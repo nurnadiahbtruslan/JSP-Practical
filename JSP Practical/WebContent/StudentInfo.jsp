@@ -29,7 +29,7 @@
     	  connection = DriverManager.getConnection( connectionUr1 + dbName, userId, password);
     	 
     	  //Create query statement for select student
-    	  PreparedStatement stmt = connection.prepareStatement("select name from Student where id=? and password=?");
+    	  PreparedStatement stmt = connection.prepareStatement("select name from Student where id=? and password=password(?)");
     	  stmt.setString(1, request.getParameter("username"));
     	  stmt.setString(2, request.getParameter("password"));
     	  
@@ -61,11 +61,38 @@
     	  //create and execute query statement for select student
     	  statement = connection.createStatement();
     	  ResultSet rs = statement.executeQuery("select id, name, department from Student");
+    			  
     	  
     	  %>
+    	  
+    	  	  <script>
+    	  function idleLogout() {
+    	      var t;
+    	      window.onload = resetTimer;
+    	      window.onmousemove = resetTimer;
+    	      window.onmousedown = resetTimer;       
+    	      window.ontouchstart = resetTimer;  
+    	      window.onclick = resetTimer;     
+    	      window.onkeydown = resetTimer;   
+    	      window.addEventListener('scroll', resetTimer, true); 
+
+    	      function logout() {
+    	         	alert("Your session has timed out.");
+    	          window.location.href = 'Login.html';
+    	      }
+
+    	      function resetTimer() {
+    	          clearTimeout(t);
+    	          t = setTimeout(logout, 100000); 
+    	      }
+    	  }
+    	  idleLogout();
+    	  </script>
+    	  
     	  <%//Create new student button %>
     	  <p>
     	  	 <a href ="NewStudent.jsp"><button type ='newStudent'>New Student</button></a>
+    	  	 <a href ="Marks.jsp"><button type ='marks'>Student Marks</button></a>
     	  </p>
     	  <%//Create table for students %>
     	  <table border="1">

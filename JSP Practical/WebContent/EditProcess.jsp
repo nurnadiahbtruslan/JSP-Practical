@@ -41,7 +41,7 @@
 			  connection.setAutoCommit(false);
 			 
 			  //Create query for update student
-			  PreparedStatement stmt = connection.prepareStatement("update Student set name= ?,password=?, department=? where id = ?");
+			  PreparedStatement stmt = connection.prepareStatement("update Student set name= ?,password=password(?), department=? where id = ?");
 			  stmt.setString(1,request.getParameter("newName"));
 			  stmt.setString(2,request.getParameter("newPass"));
 			  stmt.setString(3,request.getParameter("newDepartment"));

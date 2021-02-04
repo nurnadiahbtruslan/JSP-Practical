@@ -40,7 +40,7 @@
 			  connection.setAutoCommit(false);
 			  
 			  //Create query statement for insert student data
-			  PreparedStatement stmt = connection.prepareStatement("insert into Student values (?,?,?,?)");
+			  PreparedStatement stmt = connection.prepareStatement("insert into Student values (?,?,?,password(?))");
 			  stmt.setString(1,request.getParameter("id"));
 			  stmt.setString(2,request.getParameter("name"));
 			  stmt.setString(3,request.getParameter("department"));
